@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.study.mysql.dao.IMainDAO">
+  <resultMap id="map" type="com.study.mysql.model.MainVO">
+  <result property="num" column="num"/>
+  	<result property="name" column="name"/>
+  <result property="korean" column="korean"/>
+  <result property="math" column="math"/>
+  <result property="english" column="english"/>
+  <result property="research" column="research"/>
+  <result property="avg" column="avg"/>
+  </resultMap>
+  <select id="list" resultMap="map">
+  select * from study
+  
+  </select>
+  
+  <select id="test" resultType="java.util.Map">
+  select * from study
+  
+  </select>
+  <insert id="insert" parameterType="com.study.mysql.model.MainVO">
+  insert into study (name,korean,math,english,research,avg) values (#{name},#{korean},#{math},#{english},#{research},#{avg})
+  </insert>
+  
+  <update id="update" parameterType="com.study.mysql.model.MainVO">
+  	update study set name=#{name}, korean=#{korean}, math=#{math},english=#{english}, research=#{research}, avg=#{avg}
+  			where num=#{len}
+  </update>
+  <delete id="delete" parameterType="int">
+  	delete from study where num=#{len}
+  </delete>
+  </mapper>
